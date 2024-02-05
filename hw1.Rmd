@@ -1,0 +1,206 @@
+---
+title: "SOC360 Homework 1: Data Structures and Programming in R"
+author: "Your name here"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+# DO NOT EDIT
+# This cell is used to set some options for how the output should be rendered.
+
+# The following lines define how the output of code chunks should behave
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(include = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+
+# Packages
+library(tidyverse)
+library(knitr)
+
+set.seed(08901) # Setting seed for random number generator
+```
+
+## Set-up
+You should be viewing this document in RStudio. If you have not done so already, make sure to install ``rmarkdown`` and ``knitr``. You can do this by clicking the Install button in the Packages tab in the lower-right corner of RStudio and following the directions on the installation menu. You can also install packages by entering ``install.packages(x)`` into the R Console, where ``x`` is the name of the package.
+
+## Instructions
+This assignment will focus on the skills you have been developing in R over the first few weeks of this class. It will focus on the materials on data structures and the fundamentals of programming in R. Tabular data will be covered more thoroughly on the next homework. The assignment is also designed to help to build familiarity with RStudio, RMarkdown, and Github. It will involve a combination of short written answers and coding in R.
+
+Please review the AI assistance policy on the syllabus before proceeding. As discussed in class, it is a violation of academic integrity to try to solve the homework problems using ChatGPT or related tools. You are also forbidden from using Copilot in RStudio.
+
+**Please begin by adding your name to the top of the document on line 3.** 
+
+Submission instructions are included at the end of this document.
+
+## Using RMarkdown
+This RMarkdown document contains a mixture of text (formatted using Markdown conventions) and R code "chunks". Each chunk contains a set of braces with some important information. For example, the chunk below is prefaced with ``{r preliminaries, include=FALSE}``. First, the ``r`` signifies that the chunk should be run using R. Second, ``preliminaries`` is the name of the chunk. This is followed by a set of options, separated by commas. In this case ``include=FALSE`` means that this code chunk will not be shown in any output. If we set it to ``TRUE`` then the chunk would be printed in any output.
+
+```{r preliminaries, include=FALSE} 
+# No need for any code here
+```
+
+In the first cell (lines 9-21) there are also some global options that alter the behavior of all code chunks. Look at the documentation [here](https://yihui.org/knitr/options/#chunk-options). 
+
+Pressing ``Alt + Shift + K`` or ``Option + Shift + K``, depending upon your computer, will open up a menu showing the keyboard shortcuts available in RStudio.
+
+You can execute the code in a chunk by clicking the green arrow in the top right ("Run Current Chunk") or by using the keyboard shortcut. You can also run individual lines by selecting the entire line or clicking at the beginning and using the keyboard shortcut.
+
+#  Questions
+
+Please answer each of the following questions. These will involve a combination of short answers and coding.
+
+Q1. For each of the following chunk options, explain what they do in one sentence (refer to the documentation linked above):
+    a. echo: 
+    b. warning:
+    c. message:
+    d. tidy:
+    e. error:
+    
+Q2. Use the "Insert a new code chunk" button to insert a new chunk below this line (green button above). Add the same option as the previous chunk. Once you have created the chunk, create three variables: a character string, an integer, and a logical. You are free to choose the value of the variables and can name them anything you like.
+
+Q3. In the chunk below, create a vector of numbers from 1 to 100 and assign it to a variable called `v`. Print the last 5 values using square-brackets indexing.
+
+*Note: The # symbol is used to comment within code. Make sure to remove it before running your code. You can select a block of code and comment or uncomment using Shift + Command/Control + C*
+```{r q3, echo=TRUE, tidy=TRUE}
+# Your answer here
+```
+
+Q4. Complete the code chunk below. Assign the first and last elements of the vector created in Q3 to the relevant names then print each object out using the ``print`` function.
+
+```{r q4, echo=TRUE, tidy=TRUE}
+first <-
+last <-
+print(first)
+print(last)
+```
+
+Q5. a. Create a vector ``v`` of 10,000 values drawn from a normal distribution then calculate the mean and standard deviation using built-in functions. Then execute the last two line. These lines will print the values, rounded to two decimal places.
+```{r q5a, echo=TRUE, tidy=TRUE}
+v <-
+v.mean <-
+v.sd <-
+print(round(v.mean), 2)
+print(round(v.sd), 2)
+```
+
+Q5. b. Now create a new vector ``v.2`` of the same length as ``v``, where the mean and standard deviation are equal to 10. You may need to refer to the documentation for `rnorm` to do this. Recall that you can search for functions using the `Help` tab to the right or by entering `?X` into the console, where `X` is the function name.
+```{r q5b, echo=TRUE, tidy=TRUE}
+v.2 <-
+v.2.mean <-
+v.2.sd <-
+print(round(v.2.mean), 2)
+print(round(v.2.sd), 2)
+```
+
+Q6. Bind the two vectors from Q4 and Q5 together into a matrix with 10,000 rows and 2 columns. Print the first ten rows of the matrix using the ``head`` function.
+```{r q6, echo=TRUE, tidy=TRUE}
+#
+
+```
+
+Q7. a. Convert the matrix from Q6 into a data frame. Use the ``colnames`` function to assign the names ``x`` and ``y`` to the columns. 
+```{r q7a, echo=TRUE, tidy=TRUE}
+#
+
+```
+
+Q7. b. Next, use the ``$`` operator to select column ``y``. Print the twenty highest values from this column.
+```{r q7b, echo=TRUE, tidy=TRUE}
+#
+
+```
+
+Q8. This question will focus on lists. In the example below we have conducted a series of tosses of a fair coin and stored the results and other relevant information in a list called `q`. Do not modify the first two lines and do not use the parameter ``t`` in any of your code. Write code to complete the following:
+
+a. Print out the last ten elements of the ``trials`` element of ``q`` using only the square brackets notation for list indexing.
+
+b. Do the same but make use of the ``$`` operator. Note that you may still need to use square brackets to index specific elements of ``trials``. 
+
+c. Print the value of the variance of ``trials``, as stored in the ``stats`` element of `q`.
+
+d. Assign the ``trials`` element as a new column in the data frame you created in Q6.
+```{r q8, echo=TRUE, tidy=TRUE}
+t <- rbinom(10000,1,0.50) # DO NOT MODIFY
+q <- list(trials = t, desc="10k_trials", timestamp = date(), stats = c(mean(t), var(t))) # DO NOT MODIFY
+# Your code here
+# a
+
+# b
+
+# c
+
+# d
+
+```
+
+
+Q9. In the example below, I have created a list to store information about various fruit, similar to the example discussed in lecture. The ``unlist`` command can be used to convert from a list to a vector. 
+
+a. Find out the class of ``v``. In one sentence explain why it belongs to this class given that `fruit.count` contained both character and numeric content.
+
+b. You will notice that this vector contains names, corresponding to the original element name and the position of the value in the original vector. You can use these names along with square brackets notation to extract specific elements from the vector. Use this method to print out the number of kiwis. Hint: Print `v` and look at how the elements are indexed.
+```{r q9, echo=TRUE, tidy=TRUE}
+fruit.count <- list(fruits=c("apple", "orange", "pineapple", "kiwi"), counts=c(9, 4, 3, 12))
+v <- unlist(fruit.count)
+# Your code here
+
+```
+
+Q10. In the following chunk we use a for-loop and an if-else statement to sort letters into vowels and consonants. `LETTERS` is a vector containing the capitalized Latin alphabet. Complete the missing code between the parentheses. The code should loop over each letter and check whether it is a vowel or a consonant. If it is a vowel it should be appended to the vowels vector, otherwise it should be appended to the consonants vector. You may need to use the help function (``?append``) to see how the append function works. Hint: The command `%in%` may be helpful for completing the conditionals.
+
+```{r q10, echo=TRUE, tidy=TRUE}
+letters <- LETTERS # A vector of letters
+vowels <- character() # A vector to store vowels
+consonants <- character() # A vector to store consonants
+
+for () { # Complete the loop statement
+    if () { # Complete the conditional in parentheses
+        vowels <- append() # Add arguments to append function
+    } else {
+        consonants <- append() # Add arguments append function
+    }
+}
+```
+
+Q11. Write a function that takes two inputs, a number $x$ and an exponent $n$. The function should be called `exponentiate`. For example, if `x = 4` and `n = 3` the function should return `64`. When you have written the function, run the final line to test that it works as expected.
+```{r q11, echo=TRUE, tidy=TRUE}
+# Your code here
+
+exponentiate(4, power = 3)
+```
+
+Q12. Use the pipe operator (``%>%`` or ``|>``) to re-write this nested set of functions. Note that you may need to supply arguments to some of the functions used in the pipe. You may also need to look up how to do some of the mathematical options using `magrittr`. Verify that the results are identical.
+
+```{r q12, echo=TRUE, tidy=TRUE}
+N <- 10000
+X <- rnorm(N)
+
+sqrt(sum(((X)^2))/N)
+
+# Your answer here
+```
+
+You have reached the end of the assignment. Please read the submission instructions below.
+
+# Submission instructions
+Once you have finished the assignment please complete the following steps to submit it:
+
+
+1. Click on the arrow next to ``Knit`` menu at the top of the screen and select ``Knit to HTML``. Assuming there are no errors in your code, this will render the RMarkdown document in HTML. Verify that this document contains all of your answers.
+
+*Note: ``Knit`` will produce an error if you have any ``install.packages()`` calls in this document. If this happens, remove the calls. You only need to install packages once. Please also avoid printing out unnecessary information in your answers.*
+
+2. When you are satisfied with the results, go to the top right Git panel in RStudio, check the boxes on the left next to the two files. 
+3. Click the `Commit` button. This will open up a new window.
+4. Write a message in the ``Commit message`` box then click `Commit`. If it is your final submission, the message should read "Homework submitted". Accept the pop-up that will appear and close the window.
+5. Finally, click the green arrow at the top of the Git tab to "push" your changes to Github. If asked for your username and password, close the window and complete the steps here then attempt it again: https://happygitwithr.com/https-pat.html#tldr
+6. Visit your Github repository in your browser and verify that the final version of both files has been correctly uploaded.
+
+You may commit changes as many times as you need until the deadline. I encourage you to do a test commit before you commit the final version of the homework.
+
+
+
+
